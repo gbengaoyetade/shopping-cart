@@ -17,18 +17,18 @@ const getProductsQuery = (currency) => {
   `;
 };
 
-const App = () => {
-  const [currency, setCurrency] = useState('TRY');
+const App = (props) => {
+  const [currency, setCurrency] = useState('USD');
 
   const { loading, error, data } = useQuery(getProductsQuery(currency));
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
+  if (error) return <p>Error</p>;
 
   return (
     <div className={styles.wrapper}>
-      <Cart setCurrency={setCurrency} />
-      <ProductList currency={currency} products={data.products} />
+      <Cart currency={currency} setCurrency={setCurrency} />
+      <ProductList products={data.products} currency={currency} />
     </div>
   );
 };

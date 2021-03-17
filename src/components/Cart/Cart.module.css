@@ -1,0 +1,47 @@
+.wrapper {
+  width: 400px;
+  background-color: #f2f3f0;
+  padding: 5px 25px;
+}
+
+.select {
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #dedfdb;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-desc {
+  display: flex;
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.open {
+  display: block;
+}
+
+.close {
+  display: none;
+}
+
+.button {
+  border-radius: 50%;
+  border: 1px solid #d7dbd8;
+  padding: 3px 7px;
+  cursor: pointer;
+  margin: 1px;
+}
+
+.button:focus {
+  outline: 1px solid blue;
+}

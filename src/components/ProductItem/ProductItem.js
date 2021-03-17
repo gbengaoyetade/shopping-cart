@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import styles from './ProductItem.module.css';
-import { currenciesMap } from '../../constants';
+import { currenciesMap, ADD_TO_CART } from '../../constants';
+import { AppContext } from '../../store';
 
 const ProductItem = ({ image_url, id, title, price, currency }) => {
-  const handleClick = () => {};
+  const { dispatch } = useContext(AppContext);
+  const handleClick = (id) => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: { id },
+    });
+  };
 
   return (
     <section className={styles.wrapper}>

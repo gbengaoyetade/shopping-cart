@@ -9,7 +9,7 @@ const currenciesMap = {
   ARS: '&#36;',
   AUD: '&#36;',
   AWG: '&#402;',
-  AZN: '&#1084;&#1072;&#1085;',
+  AZN: '&#1084;',
   BAM: '&#75;&#77;',
   BBD: '&#36;',
   BDT: undefined,
