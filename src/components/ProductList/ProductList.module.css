@@ -1,6 +1,21 @@
 .products-wrapper {
   background-color: #e2e6e3;
-  display: flex;
-  justify-content: space-between;
-  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  width: 1400px;
+}
+
+@media (max-width: 767px) {
+  .products-wrapper {
+    grid-template-columns: 1fr 1fr;
+    max-width: 767px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 767px;
+  }
 }
