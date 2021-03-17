@@ -3,9 +3,10 @@ import { currenciesMap } from '../../constants';
 import styles from './Cart.module.css';
 import { AppContext } from '../../store';
 import CartItem from './CartItem';
+import { CLOSE_CART } from '../../constants';
 
 const Cart = ({ currency, setCurrency }) => {
-  const { state } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
 
   const renderOptions = () => {
     return Object.keys(currenciesMap).map((value) => (
@@ -29,35 +30,35 @@ const Cart = ({ currency, setCurrency }) => {
     });
   };
 
-  const handleCartClose = () => {};
+  const handleCartClose = () => {
+    dispatch({ type: CLOSE_CART });
+  };
 
   return (
-    <section
-      className={`${styles.wrapper} ${
-        state.cart.isOpen ? styles.open : styles.close
-      } `}
-    >
-      <header className={styles.header}>
-        <div className={styles['header-desc']}>
-          <button className={styles.button} onClick={handleCartClose}>
-            &#60;
-          </button>
-          <p className={styles.title}>YOUR CART</p>
-        </div>
+    <div className={`${state.cart.isOpen ? styles.open : styles.close} `}>
+      <section className={styles.wrapper}>
+        <header className={styles.header}>
+          <div className={styles['header-desc']}>
+            <button className={styles.button} onClick={handleCartClose}>
+              &#60;
+            </button>
+            <p className={styles.title}>YOUR CART</p>
+          </div>
 
-        <form>
-          <select
-            className={styles.select}
-            onChange={handleChange}
-            name='currency'
-          >
-            {renderOptions()}
-          </select>
-        </form>
-      </header>
+          <form>
+            <select
+              className={styles.select}
+              onChange={handleChange}
+              name='currency'
+            >
+              {renderOptions()}
+            </select>
+          </form>
+        </header>
 
-      {renderCartItems()}
-    </section>
+        {renderCartItems()}
+      </section>
+    </div>
   );
 };
 

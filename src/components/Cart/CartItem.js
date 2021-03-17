@@ -5,7 +5,7 @@ import { currenciesMap } from '../../constants';
 const CartItem = ({ id, currency }) => {
   const client = useApolloClient();
   const { title, price, image_url } = client.readFragment({
-    id: `Product:${id}`, // The value of the to-do item's unique identifier
+    id: `Product:${id}`,
     fragment: gql`
       fragment MyTodo on Product {
         id,
