@@ -1,7 +1,7 @@
 import styles from './ProductItem.module.css';
 import { currenciesMap } from '../../constants';
 
-const ProductItem = ({ image_url, id, title, price }) => {
+const ProductItem = ({ image_url, id, title, price, currency }) => {
   const handleClick = () => {};
 
   return (
@@ -13,7 +13,7 @@ const ProductItem = ({ image_url, id, title, price }) => {
         <p className={styles.price}>
           From &nbsp;
           <span
-            dangerouslySetInnerHTML={{ __html: currenciesMap['USD'] }}
+            dangerouslySetInnerHTML={{ __html: currenciesMap[currency] }}
           ></span>
           {price}
         </p>

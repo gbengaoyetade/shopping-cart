@@ -14,6 +14,11 @@
 .name {
   color: #4d4f4c;
   margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .image {
@@ -30,4 +35,10 @@
   color: #fafaf8;
   width: 200px;
   height: 50px;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.button:hover {
+  opacity: 1;
 }
