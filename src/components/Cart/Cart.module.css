@@ -1,16 +1,24 @@
 .wrapper {
-  width: 400px;
+  width: 600px;
   background-color: #f2f3f0;
   padding: 5px 25px;
-  position: absolute;
+  position: fixed;
   right: 0;
   height: 100vh;
+  z-index: 3;
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 100vw;
+  }
 }
 
 .select {
   background-color: #fff;
   padding: 5px;
   border: 1px solid #dedfdb;
+  margin-top: 10px;
 }
 
 .header {
@@ -26,11 +34,15 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 12px;
+  color: #a2a2a1;
 }
 
 .open {
   opacity: 1;
+}
+
+.overlay {
   background-color: rgba(0, 0, 0, 0.15);
   position: absolute;
   position: fixed;
@@ -51,9 +63,11 @@
 .button {
   border-radius: 50%;
   border: 1px solid #d7dbd8;
-  padding: 3px 7px;
+  padding: 6px 10px;
   cursor: pointer;
   margin: 1px;
+  text-align: center;
+  color: #525252;
 }
 
 .button:focus {

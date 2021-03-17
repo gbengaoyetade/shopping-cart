@@ -26,7 +26,14 @@ const Cart = ({ currency, setCurrency }) => {
 
   const renderCartItems = () => {
     return Object.entries(state.cart.items).map((item) => {
-      return <CartItem key={item[0]} id={item[0]} currency={currency} />;
+      return (
+        <CartItem
+          key={item[0]}
+          id={item[0]}
+          count={item[1]}
+          currency={currency}
+        />
+      );
     });
   };
 
@@ -36,6 +43,12 @@ const Cart = ({ currency, setCurrency }) => {
 
   return (
     <div className={`${state.cart.isOpen ? styles.open : styles.close} `}>
+      <div
+        className={`${styles.overlay} ${
+          state.cart.isOpen ? styles.open : styles.close
+        } `}
+        onClick={handleCartClose}
+      ></div>
       <section className={styles.wrapper}>
         <header className={styles.header}>
           <div className={styles['header-desc']}>

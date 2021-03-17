@@ -36,9 +36,8 @@
   width: 200px;
   height: 50px;
   cursor: pointer;
-  opacity: 0.9;
 }
 
 .button:hover {
-  opacity: 1;
+  background-color: #373d36;
 }

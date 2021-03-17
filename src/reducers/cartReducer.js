@@ -1,4 +1,9 @@
-import { ADD_TO_CART, REMOVE_FROM_CART, CLOSE_CART } from '../constants';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  CLOSE_CART,
+  DELETE_FROM_CART,
+} from '../constants';
 
 const cartReducer = (state, action) => {
   const { type, payload } = action;
@@ -13,6 +18,15 @@ const cartReducer = (state, action) => {
       return newState;
 
     case REMOVE_FROM_CART:
+      const stateCopy = { items: { ...state.items }, isOpen: true };
+      if (stateCopy.items[payload.id] > 1) {
+        stateCopy.items[payload.id] -= 1;
+      } else {
+        delete stateCopy.items[payload.id];
+      }
+      return stateCopy;
+
+    case DELETE_FROM_CART:
       const newItems = { ...state.items };
       delete newItems[payload.id];
       return { isOpen: true, items: newItems };
