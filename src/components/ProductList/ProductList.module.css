@@ -1,0 +1,6 @@
+.products-wrapper {
+  background-color: #e2e6e3;
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+}

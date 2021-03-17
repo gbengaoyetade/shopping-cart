@@ -1,0 +1,1 @@
+export { currenciesMap } from './currencies';
