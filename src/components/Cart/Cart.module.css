@@ -67,9 +67,14 @@
   cursor: pointer;
   margin: 1px;
   text-align: center;
-  color: #525252;
 }
 
 .button:focus {
   outline: 1px solid blue;
+}
+
+.subTotal {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

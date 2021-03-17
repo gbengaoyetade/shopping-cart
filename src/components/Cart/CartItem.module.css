@@ -1,5 +1,4 @@
 .wrapper {
-  width: 100%;
   background-color: #fff;
   padding: 10px;
   margin-top: 10px;
@@ -9,4 +8,11 @@
   width: 50px;
   height: 50px;
   object-fit: contain;
+}
+
+.button {
+  color: #525252;
+  background: none;
+  border: none;
+  cursor: pointer;
 }

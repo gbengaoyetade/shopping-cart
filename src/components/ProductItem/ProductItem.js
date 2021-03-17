@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import styles from './ProductItem.module.css';
-import { currenciesMap, ADD_TO_CART } from '../../constants';
+import { ADD_TO_CART } from '../../constants';
 import { AppContext } from '../../store';
+import { Currency } from '../Currency';
 
 const ProductItem = ({ image_url, id, title, price, currency }) => {
   const { dispatch } = useContext(AppContext);
@@ -20,9 +21,7 @@ const ProductItem = ({ image_url, id, title, price, currency }) => {
         <p className={styles.name}>{title}</p>
         <p className={styles.price}>
           From &nbsp;
-          <span
-            dangerouslySetInnerHTML={{ __html: currenciesMap[currency] }}
-          ></span>
+          <Currency currency={currency} />
           {price}
         </p>
         <button className={styles.button} onClick={() => handleClick(id)}>
