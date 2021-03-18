@@ -36,6 +36,7 @@
 .open {
   opacity: 1;
   z-index: 3;
+  transition: opacity 0.2s ease;
 }
 
 .overlay {
