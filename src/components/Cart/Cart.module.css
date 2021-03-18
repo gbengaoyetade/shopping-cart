@@ -1,16 +1,12 @@
 .wrapper {
-  width: 600px;
+  width: 50%;
+  max-width: 600px;
   background-color: #f2f3f0;
   padding: 5px 25px;
   position: fixed;
   right: 0;
+  top: 0;
   height: 100vh;
-}
-
-@media (max-width: 480px) {
-  .wrapper {
-    width: 100vw;
-  }
 }
 
 .select {
@@ -90,6 +86,29 @@
   height: 10%;
   position: absolute;
   bottom: 0;
-  width: 92%;
+  width: 91%;
   border-top: 1px solid #5e6968;
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0 2px;
+  }
+
+  .cart-items {
+    height: 80%;
+    padding: 0 2px;
+  }
+
+  .wrapper {
+    width: 100vw;
+    padding: 5px;
+    left: 0;
+    overflow: hidden;
+  }
+
+  .footer {
+    width: 94%;
+    padding: 0 5px;
+  }
 }
