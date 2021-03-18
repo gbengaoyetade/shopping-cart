@@ -12,7 +12,7 @@ const currenciesMap = {
   AZN: '&#1084;',
   BAM: '&#75;&#77;',
   BBD: '&#36;',
-  BDT: undefined,
+  BDT: '&#2547;',
   BGN: '&#1083;&#1074;',
   BIF: undefined,
   BMD: '&#36;',

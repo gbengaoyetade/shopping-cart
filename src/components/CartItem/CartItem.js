@@ -5,7 +5,7 @@ import {
   REMOVE_FROM_CART,
   DELETE_FROM_CART,
 } from '../../constants';
-import CartItemCount from './CartItemCount';
+import { CartItemCount } from '../CartItemCount';
 import { AppContext } from '../../store';
 import { Currency } from '../Currency';
 
