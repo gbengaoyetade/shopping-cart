@@ -15,7 +15,7 @@ const Cart = ({ currency, setCurrency }) => {
 
   const renderOptions = () => {
     return Object.keys(currenciesMap).map((value) => (
-      <option key={value} value={value} selected={value === currency}>
+      <option key={value} value={value}>
         {value}
       </option>
     ));
@@ -38,8 +38,10 @@ const Cart = ({ currency, setCurrency }) => {
           }
         `,
       });
+
       const currentItemPrice = price * item[1];
       subTotal += currentItemPrice;
+
       return (
         <CartItem
           key={item[0]}
@@ -68,7 +70,11 @@ const Cart = ({ currency, setCurrency }) => {
         } `}
         onClick={handleCartClose}
       ></div>
-      <section className={styles.wrapper}>
+      <section
+        className={`${styles.wrapper} ${
+          state.cart.isOpen ? styles.open : styles.close
+        } `}
+      >
         <header className={styles.header}>
           <div className={styles['header-desc']}>
             <button className={styles.button} onClick={handleCartClose}>
@@ -82,13 +88,15 @@ const Cart = ({ currency, setCurrency }) => {
               className={styles.select}
               onChange={handleChange}
               name='currency'
+              defaultValue={currency}
             >
               {renderOptions()}
             </select>
           </form>
         </header>
-        <div>{renderCartItems()}</div>
-        <div>
+        <div className={styles['cart-items']}>{renderCartItems()}</div>
+
+        <footer className={styles.footer}>
           <p className={styles.subTotal}>
             <span>Subtotal</span>{' '}
             <span>
@@ -96,7 +104,7 @@ const Cart = ({ currency, setCurrency }) => {
               {subTotal}
             </span>
           </p>
-        </div>
+        </footer>
       </section>
     </div>
   );
