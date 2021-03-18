@@ -3,7 +3,7 @@ import { useApolloClient, gql } from '@apollo/client';
 import { currenciesMap } from '../../constants';
 import styles from './Cart.module.css';
 import { AppContext } from '../../store';
-import CartItem from './CartItem';
+import { CartItem } from '../CartItem';
 import { CLOSE_CART } from '../../constants';
 import { Currency } from '../Currency';
 

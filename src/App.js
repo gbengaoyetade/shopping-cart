@@ -23,13 +23,30 @@ const App = (props) => {
 
   const { loading, error, data } = useQuery(getProductsQuery(currency));
 
-  if (loading)
+  const renderProducts = () => {
+    return (
+      <>
+        <Cart currency={currency} setCurrency={setCurrency} />
+        <ProductList products={data.products} currency={currency} />
+      </>
+    );
+  };
+
+  const renderLoader = () => {
     return (
       <div className={styles['loading-wrapper']}>
         <img src={loadingGif} alt='Loading gif' />
       </div>
     );
-  if (error) return <p>Error</p>;
+  };
+
+  const rendeError = () => (
+    <div className={styles['loading-wrapper']}>
+      <p className={styles.error}>
+        There was an error fetching products. Please try again.
+      </p>
+    </div>
+  );
 
   return (
     <div className={styles.wrapper}>
@@ -37,8 +54,9 @@ const App = (props) => {
         <h1>All Products</h1>
         <p>A 360&#730; look at Lumin</p>
       </header>
-      <Cart currency={currency} setCurrency={setCurrency} />
-      <ProductList products={data.products} currency={currency} />
+      {loading && renderLoader()}
+      {data && renderProducts()}
+      {error && rendeError()}
     </div>
   );
 };
