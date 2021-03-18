@@ -38,7 +38,8 @@ const Cart = ({ currency, setCurrency }) => {
           }
         `,
       });
-      subTotal += price * item[1];
+      const currentItemPrice = price * item[1];
+      subTotal += currentItemPrice;
       return (
         <CartItem
           key={item[0]}
@@ -46,7 +47,7 @@ const Cart = ({ currency, setCurrency }) => {
           count={item[1]}
           currency={currency}
           title={title}
-          price={price}
+          price={currentItemPrice}
           imageUrl={image_url}
         />
       );

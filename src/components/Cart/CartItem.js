@@ -26,20 +26,26 @@ const CartItem = ({ id, count, currency, title, price, imageUrl }) => {
 
   return (
     <article className={styles.wrapper}>
-      <p>{title}</p>
-      <button className={styles.button} onClick={handleItemRemove}>
-        x
-      </button>
-      <p>
-        <Currency currency={currency} />
-        {price}
-      </p>
-      <img className={styles.image} src={imageUrl} alt={title} />
-      <CartItemCount
-        count={count}
-        increment={increment}
-        decrement={decrement}
-      />
+      <div className={styles.justify}>
+        <p className={styles.title}>{title}</p>
+        <button className={styles.button} onClick={handleItemRemove}>
+          x
+        </button>
+      </div>
+      <div className={styles['image-wrapper']}>
+        <img className={styles.image} src={imageUrl} alt={title} />
+      </div>
+      <div className={`${styles.justify} ${styles.quantity}`}>
+        <CartItemCount
+          count={count}
+          increment={increment}
+          decrement={decrement}
+        />
+        <p>
+          <Currency currency={currency} />
+          {price}
+        </p>
+      </div>
     </article>
   );
 };
