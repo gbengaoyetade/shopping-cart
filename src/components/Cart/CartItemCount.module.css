@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  border: 1px solid #d2d2d2;
+  width: 100px;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding: 2px;
+  color: #2a2a2a;
+}
+
+.button {
+  background: none;
+  border: none;
+  height: fit-content;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.wrapper p {
+  margin: 0;
+}

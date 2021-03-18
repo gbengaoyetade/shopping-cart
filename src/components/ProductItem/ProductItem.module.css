@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+}
+
+.wrapper div {
+  display: flex;
+  justify-content: space-evenly;
+  height: fit-content;
+}
+
+.name {
+  color: #4d4f4c;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.image {
+  width: 150px;
+  height: 250px;
+  max-height: 300px;
+  object-fit: contain;
+}
+
+.button {
+  background-color: #596457;
+  padding: 5px;
+  border: 1px solid #596457;
+  color: #fafaf8;
+  width: 200px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #373d36;
+}

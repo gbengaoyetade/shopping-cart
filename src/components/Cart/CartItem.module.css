@@ -1,0 +1,36 @@
+.wrapper {
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  color: #5e6968;
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.button {
+  color: #525252;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.justify {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quantity {
+  width: 60%;
+}
