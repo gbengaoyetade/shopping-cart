@@ -1,9 +1,9 @@
 import { useReducer, createContext } from 'react';
-import { cartReducer, currencyReducer, loadingReducer } from '../reducers';
+import { cartReducer, currencyReducer } from '../reducers';
 
 const initialState = {
   cart: { isOpen: false, items: {} },
-  currency: { current: 'USD', previous: 'USD' },
+  currency: 'USD',
   loading: false,
 };
 
@@ -12,7 +12,6 @@ const AppContext = createContext({ state: initialState, dispatch: () => {} });
 const mainReducer = (state, action) => ({
   cart: cartReducer(state.cart, action),
   currency: currencyReducer(state.currency, action),
-  loading: loadingReducer(state.loading, action),
 });
 
 const AppProvider = ({ children }) => {

@@ -40,7 +40,7 @@ const Cart = () => {
   `;
 
   const [getProducts, { data }] = useLazyQuery(query, {
-    variables: { currency: currency.current },
+    variables: { currency: currency },
   });
 
   if (data) {
@@ -63,7 +63,7 @@ const Cart = () => {
           key={item[0]}
           id={item[0]}
           count={item[1]}
-          currency={currency.current}
+          currency={currency}
           title={title}
           price={currentItemPrice}
           imageUrl={image_url}
@@ -104,7 +104,7 @@ const Cart = () => {
               className={styles.select}
               onChange={handleChange}
               name='currency'
-              defaultValue={currency.current}
+              defaultValue={currency}
             >
               {renderOptions()}
             </select>
@@ -116,7 +116,7 @@ const Cart = () => {
           <p className={styles.subTotal}>
             <span>Subtotal</span>{' '}
             <span>
-              <Currency currency={currency.current} />
+              <Currency currency={currency} />
               {subTotal}
             </span>
           </p>
