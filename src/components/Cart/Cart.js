@@ -1,14 +1,16 @@
-import { useContext } from 'react';
-import { useApolloClient, gql } from '@apollo/client';
+import { useContext, useEffect } from 'react';
+import { useApolloClient, gql, useLazyQuery } from '@apollo/client';
 import { currenciesMap } from '../../constants';
 import styles from './Cart.module.css';
 import { AppContext } from '../../store';
 import { CartItem } from '../CartItem';
-import { CLOSE_CART } from '../../constants';
+import { CLOSE_CART, SET_CURRENCY } from '../../constants';
 import { Currency } from '../Currency';
+import { readProduct, writePricesToCache } from '../../helpers';
 
-const Cart = ({ currency, setCurrency }) => {
+const Cart = () => {
   const { state, dispatch } = useContext(AppContext);
+  const { currency } = state;
 
   const client = useApolloClient();
   let subTotal = 0;
@@ -22,22 +24,36 @@ const Cart = ({ currency, setCurrency }) => {
   };
 
   const handleChange = (event) => {
-    setCurrency(event.target.value);
+    dispatch({
+      type: SET_CURRENCY,
+      payload: event.target.value,
+    });
   };
+
+  const query = gql`
+    query Products($currency: Currency) {
+      products {
+        id
+        price(currency: $currency)
+      }
+    }
+  `;
+
+  const [getProducts, { data }] = useLazyQuery(query, {
+    variables: { currency: currency.current },
+  });
+
+  if (data) {
+    writePricesToCache(client, data.products);
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, [currency, getProducts]);
 
   const renderCartItems = () => {
     const cartItems = Object.entries(state.cart.items).map((item) => {
-      const { title, price, image_url } = client.readFragment({
-        id: `Product:${item[0]}`,
-        fragment: gql`
-          fragment MyTodo on Product {
-            id,
-            price(currency: ${currency})
-            title
-            image_url
-          }
-        `,
-      });
+      const { title, price, image_url } = readProduct(client, item[0]);
 
       const currentItemPrice = price * item[1];
       subTotal += currentItemPrice;
@@ -47,7 +63,7 @@ const Cart = ({ currency, setCurrency }) => {
           key={item[0]}
           id={item[0]}
           count={item[1]}
-          currency={currency}
+          currency={currency.current}
           title={title}
           price={currentItemPrice}
           imageUrl={image_url}
@@ -88,7 +104,7 @@ const Cart = ({ currency, setCurrency }) => {
               className={styles.select}
               onChange={handleChange}
               name='currency'
-              defaultValue={currency}
+              defaultValue={currency.current}
             >
               {renderOptions()}
             </select>
@@ -100,7 +116,7 @@ const Cart = ({ currency, setCurrency }) => {
           <p className={styles.subTotal}>
             <span>Subtotal</span>{' '}
             <span>
-              <Currency currency={currency} />
+              <Currency currency={currency.current} />
               {subTotal}
             </span>
           </p>
