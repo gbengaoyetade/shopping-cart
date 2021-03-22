@@ -1,0 +1,27 @@
+.nav {
+  width: 100vw;
+  max-width: 1400px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  font-size: 1.2rem;
+  background: none;
+  border: none;
+  display: flex;
+  padding: 2px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.button sup {
+  font-size: 0.7rem;
+  display: block;
+}

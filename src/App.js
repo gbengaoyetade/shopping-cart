@@ -1,9 +1,9 @@
 import { gql, useQuery, useApolloClient } from '@apollo/client';
 import { ProductList } from './components/ProductList';
 import styles from './App.module.css';
-import { Cart } from './components/Cart';
 import loadingGif from './assets/images/loading.gif';
 import { writePricesToCache } from './helpers';
+import { Nav } from './components/Nav';
 
 const query = gql`
   query Products {
@@ -27,7 +27,6 @@ const App = () => {
   const renderProducts = () => {
     return (
       <>
-        <Cart />
         <ProductList products={data.products} />
       </>
     );
@@ -51,6 +50,7 @@ const App = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Nav />
       <header className={styles.header}>
         <h1>All Products</h1>
         <p>A 360&#730; look at Lumin</p>
