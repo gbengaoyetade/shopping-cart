@@ -50,25 +50,28 @@ const Cart = () => {
   useEffect(() => {
     getProducts();
   }, [currency, getProducts]);
+  const { products } = readProduct(client);
 
   const renderCartItems = () => {
-    const cartItems = Object.entries(state.cart.items).map((item) => {
-      const { title, price, image_url } = readProduct(client, item[0]);
+    const cartItems = products.map(({ id, priceCache, title, image_url }) => {
+      const cartItem = state.cart.items[id];
+      if (cartItem) {
+        const currentItemPrice = priceCache * cartItem;
+        subTotal += currentItemPrice;
 
-      const currentItemPrice = price * item[1];
-      subTotal += currentItemPrice;
-
-      return (
-        <CartItem
-          key={item[0]}
-          id={item[0]}
-          count={item[1]}
-          currency={currency}
-          title={title}
-          price={currentItemPrice}
-          imageUrl={image_url}
-        />
-      );
+        return (
+          <CartItem
+            key={id}
+            id={id}
+            count={cartItem}
+            currency={currency}
+            title={title}
+            price={currentItemPrice}
+            imageUrl={image_url}
+          />
+        );
+      }
+      return null;
     });
 
     return cartItems;

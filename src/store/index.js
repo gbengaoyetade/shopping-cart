@@ -4,7 +4,6 @@ import { cartReducer, currencyReducer } from '../reducers';
 const initialState = {
   cart: { isOpen: false, items: {} },
   currency: 'USD',
-  loading: false,
 };
 
 const AppContext = createContext({ state: initialState, dispatch: () => {} });

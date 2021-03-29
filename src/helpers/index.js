@@ -1,31 +1,42 @@
 import { gql } from '@apollo/client';
 
-export const readProduct = (client, id) => {
-  const { title, priceCache: price, image_url } = client.readFragment({
-    id: `Product:${id}`,
-    fragment: gql`
-      fragment MyTodo on Product {
-        priceCache
-        title
-        image_url
+export const readProduct = (client) => {
+  const data = client.readQuery({
+    query: gql`
+      query ReadProduct {
+        products {
+          id
+          priceCache
+          title
+          image_url
+        }
       }
     `,
   });
 
-  return { title, price, image_url, id };
+  return data;
 };
 
 export const writePricesToCache = (client, products) => {
   products.forEach(({ id, price }) => {
-    client.writeFragment({
-      id: `Product:${id}`,
-      fragment: gql`
-        fragment product on Product {
-          priceCache
+    client.writeQuery({
+      query: gql`
+        query WritePriceCache($id: Int!) {
+          product(id: $id) {
+            id
+            priceCache
+          }
         }
       `,
       data: {
-        priceCache: price,
+        product: {
+          __typename: 'Product',
+          id,
+          priceCache: price,
+        },
+      },
+      variables: {
+        id,
       },
     });
   });

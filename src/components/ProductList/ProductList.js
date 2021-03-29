@@ -6,18 +6,25 @@ import { AppContext } from '../../store';
 import { readProduct } from '../../helpers';
 import { Cart } from '../Cart';
 
-const ProductList = ({ products }) => {
+const ProductList = () => {
   const {
     state: { currency },
   } = useContext(AppContext);
 
   const client = useApolloClient();
 
+  const { products } = readProduct(client);
+
   return (
     <main className={styles['products-wrapper']}>
-      {products.map(({ id }) => {
-        const data = readProduct(client, id);
-        return <ProductItem key={id} {...data} currency={currency} />;
+      {products.map((product) => {
+        return (
+          <ProductItem
+            key={`product_${product.id}`}
+            {...product}
+            currency={currency}
+          />
+        );
       })}
 
       <Cart />
