@@ -4,7 +4,7 @@ import { ADD_TO_CART } from '../../constants';
 import { AppContext } from '../../store';
 import { Currency } from '../Currency';
 
-const ProductItem = ({ image_url, id, title, price, currency }) => {
+const ProductItem = ({ image_url, id, title, priceCache, currency }) => {
   const { dispatch } = useContext(AppContext);
   const handleClick = (id) => {
     dispatch({
@@ -22,7 +22,7 @@ const ProductItem = ({ image_url, id, title, price, currency }) => {
         <p className={styles.price}>
           From &nbsp;
           <Currency currency={currency} />
-          {price}
+          {priceCache}
         </p>
         <button className={styles.button} onClick={() => handleClick(id)}>
           Add to Cart

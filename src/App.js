@@ -1,33 +1,33 @@
-import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { gql, useQuery, useApolloClient } from '@apollo/client';
 import { ProductList } from './components/ProductList';
 import styles from './App.module.css';
-import { Cart } from './components/Cart';
 import loadingGif from './assets/images/loading.gif';
+import { writePricesToCache } from './helpers';
+import { Nav } from './components/Nav';
 
-const getProductsQuery = (currency) => {
-  return gql`
-    query {
-      products {
-        id
-        price(currency: ${currency})
-        title
-        image_url
-      }
+const query = gql`
+  query Products {
+    products {
+      id
+      price(currency: USD)
+      title
+      image_url
     }
-  `;
-};
+  }
+`;
 
-const App = (props) => {
-  const [currency, setCurrency] = useState('USD');
+const App = () => {
+  const { loading, error, data } = useQuery(query);
+  const client = useApolloClient();
 
-  const { loading, error, data } = useQuery(getProductsQuery(currency));
+  if (data) {
+    writePricesToCache(client, data.products);
+  }
 
   const renderProducts = () => {
     return (
       <>
-        <Cart currency={currency} setCurrency={setCurrency} />
-        <ProductList products={data.products} currency={currency} />
+        <ProductList products={data.products} />
       </>
     );
   };
@@ -50,6 +50,7 @@ const App = (props) => {
 
   return (
     <div className={styles.wrapper}>
+      <Nav />
       <header className={styles.header}>
         <h1>All Products</h1>
         <p>A 360&#730; look at Lumin</p>

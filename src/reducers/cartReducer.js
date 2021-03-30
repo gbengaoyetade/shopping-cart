@@ -3,6 +3,7 @@ import {
   REMOVE_FROM_CART,
   CLOSE_CART,
   DELETE_FROM_CART,
+  OPEN_CART,
 } from '../constants';
 
 const cartReducer = (state, action) => {
@@ -33,6 +34,9 @@ const cartReducer = (state, action) => {
 
     case CLOSE_CART:
       return { ...state, isOpen: false };
+
+    case OPEN_CART:
+      return { ...state, isOpen: true };
 
     default:
       return state;
